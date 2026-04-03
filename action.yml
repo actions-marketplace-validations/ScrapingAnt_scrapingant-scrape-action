@@ -51,5 +51,5 @@ outputs:
     description: 'Final URL after redirects (for markdown output-type)'
 
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
