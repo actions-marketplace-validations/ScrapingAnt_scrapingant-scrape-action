@@ -1,0 +1,16 @@
+{
+  "name": "scrapingant-scrape-action",
+  "version": "1.0.0",
+  "description": "GitHub Action to scrape web pages using ScrapingAnt API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.js -o dist"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.0"
+  },
+  "license": "MIT"
+}

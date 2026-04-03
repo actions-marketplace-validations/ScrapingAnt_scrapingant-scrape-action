@@ -1,0 +1,55 @@
+name: 'ScrapingAnt Web Scrape'
+description: 'Scrape any URL with rotating proxies, headless Chrome, and AI extraction. Returns HTML, Markdown, or structured AI-extracted data.'
+author: 'ScrapingAnt'
+
+branding:
+  icon: 'globe'
+  color: 'orange'
+
+inputs:
+  api-key:
+    description: 'ScrapingAnt API key. Get free at https://app.scrapingant.com/signup'
+    required: true
+  url:
+    description: 'URL to scrape'
+    required: true
+  output-type:
+    description: 'Response type: html, markdown, or extract'
+    required: false
+    default: 'html'
+  extract-properties:
+    description: 'For output-type=extract only. Comma-separated data fields to extract, e.g. "product title, price, description"'
+    required: false
+    default: ''
+  browser:
+    description: 'Enable headless Chrome JS rendering (true/false)'
+    required: false
+    default: 'true'
+  proxy-type:
+    description: 'Proxy type: datacenter or residential'
+    required: false
+    default: 'datacenter'
+  proxy-country:
+    description: 'Two-letter country code for geo-targeting (e.g. us, uk, de)'
+    required: false
+    default: ''
+  timeout:
+    description: 'Max request time in seconds (5-60)'
+    required: false
+    default: '60'
+  output-file:
+    description: 'Optional file path to save output (e.g. output.html, data.json)'
+    required: false
+    default: ''
+
+outputs:
+  content:
+    description: 'Scraped content (HTML, Markdown, or JSON depending on output-type)'
+  status-code:
+    description: 'HTTP status code from ScrapingAnt API'
+  url:
+    description: 'Final URL after redirects (for markdown output-type)'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

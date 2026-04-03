@@ -1,0 +1,57 @@
+name: Test Action
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test-html:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test HTML scrape
+        id: scrape
+        uses: ./
+        with:
+          api-key: ${{ secrets.SCRAPINGANT_API_KEY }}
+          url: 'https://example.com'
+          output-type: 'html'
+          browser: 'false'
+      - name: Verify output
+        run: |
+          echo "Status: ${{ steps.scrape.outputs.status-code }}"
+          echo "Content length: ${#CONTENT}"
+        env:
+          CONTENT: ${{ steps.scrape.outputs.content }}
+
+  test-markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test Markdown scrape
+        id: md
+        uses: ./
+        with:
+          api-key: ${{ secrets.SCRAPINGANT_API_KEY }}
+          url: 'https://example.com'
+          output-type: 'markdown'
+          browser: 'false'
+      - name: Verify markdown output
+        run: |
+          echo "${{ steps.md.outputs.content }}" | head -5
+
+  test-extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test AI extraction
+        id: extract
+        uses: ./
+        with:
+          api-key: ${{ secrets.SCRAPINGANT_API_KEY }}
+          url: 'https://example.com'
+          output-type: 'extract'
+          extract-properties: 'title, content'
+      - name: Verify JSON output
+        run: |
+          echo "${{ steps.extract.outputs.content }}"
