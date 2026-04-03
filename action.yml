@@ -1,5 +1,5 @@
 name: 'ScrapingAnt Web Scrape'
-description: 'Scrape any URL with rotating proxies, headless Chrome, and AI extraction. Returns HTML, Markdown, or structured AI-extracted data.'
+description: 'Scrape any URL with rotating proxies, headless Chrome, and AI extraction'
 author: 'ScrapingAnt'
 
 branding:
